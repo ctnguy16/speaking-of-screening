@@ -96,7 +96,7 @@
     var v = S[el.getAttribute('data-bind')]; if (v) el.textContent = v;
   });
   document.querySelectorAll('[data-bind-email]').forEach(function (el) {
-    el.textContent = S.contactEmail; el.href = 'mailto:' + S.contactEmail;
+    el.href = 'mailto:' + S.contactEmail;
   });
 
   /* ---------- Question sequence + eligibility ---------- */

@@ -39,7 +39,7 @@ window.STUDY_CONFIG = {
     giftAmount: '$25',                                                // TODO(go-live): thank-you gift as approved by the IRB
     interviewLength: '60–90 minutes',
     screenerLength: 'about 2 minutes',
-    irbNumber: 'UCI IRB #[pending]',                                   // TODO(go-live)
+    irbNumber: 'UCI IRB #STUDY00001839',
     responseTime: 'within 2 weeks',                                    // how soon you reply to eligible people
     screeningResourcesUrl: 'https://www.cdc.gov/cervical-cancer/screening/index.html', // TODO(go-live): confirm the resource link you want to share
     screeningResourcesLabel: 'Learn about cervical cancer screening (CDC)'
