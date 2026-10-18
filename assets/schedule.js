@@ -211,15 +211,20 @@
   var fmtDate = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' });
   var fmtLong = new Intl.DateTimeFormat(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
   var fmtTime = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' });
-  var tzName = '';
-  try {
-    tzName = new Intl.DateTimeFormat('en-US', { timeZoneName: 'long' }).formatToParts(new Date())
-      .filter(function (p) { return p.type === 'timeZoneName'; })[0].value;
-  } catch (e) { tzName = 'your local time'; }
+  // Bold time-zone name for a given date, so it switches on its own between e.g.
+  // "Pacific Daylight Time" and "Pacific Standard Time" when daylight saving ends.
+  function tzName(date) {
+    var name;
+    try {
+      name = new Intl.DateTimeFormat('en-US', { timeZoneName: 'long' }).formatToParts(date)
+        .filter(function (p) { return p.type === 'timeZoneName'; })[0].value;
+    } catch (e) { name = 'your local time'; }
+    return '<strong>' + esc(name) + '</strong>';
+  }
 
   function summaryCard(b) {
     return '<div class="summary-card"><span class="big">' + esc(fmtLong.format(b.start)) + '</span>' +
-      '<span>' + esc(fmtTime.format(b.start)) + ' – ' + esc(fmtTime.format(b.end)) + ' (' + esc(tzName) + ')</span>' +
+      '<span>' + esc(fmtTime.format(b.start)) + ' – ' + esc(fmtTime.format(b.end)) + ' (' + tzName(b.start) + ')</span>' +
       '<span>On Zoom with ' + esc(S.researcher) + '</span></div>';
   }
 
@@ -349,7 +354,7 @@
           '<p>All the interview times coming up are taken. Please email <a href="mailto:' + esc(S.contactEmail) + '">' + esc(S.contactEmail) + '</a> and we will find a time that works for you.</p>';
       } else if (st.step === 'day') {
         html = (st.notice ? '<div class="alert" role="alert">' + ICON.alert + '<div><p><strong>Sorry, someone just booked that time.</strong></p><p>Please choose another time.</p></div></div>' : '') +
-          head('Step 1 of 2: Pick a day', 'Each interview is ' + mins(byDay[order[0]][0]) + ' minutes. Times are shown in ' + esc(tzName) + '.') +
+          head('Step 1 of 2: Pick a day', 'Each interview is ' + mins(byDay[order[0]][0]) + ' minutes. Times are shown in ' + tzName(byDay[order[0]][0].start) + '.') +
           '<div class="day-grid" role="group" aria-labelledby="cal-title">' +
           order.map(function (k) {
             var d = byDay[k][0].start, n = byDay[k].length;
@@ -360,7 +365,7 @@
       } else if (st.step === 'slot') {
         var list = byDay[st.day];
         html = '<button type="button" class="btn btn-quiet back-btn" data-back="day" style="align-self:flex-start">' + ICON.arrowLeft + ' Choose a different day</button>' +
-          head('Step 2 of 2: Pick a time on ' + esc(fmtLong.format(list[0].start)), 'Times are shown in ' + esc(tzName) + '.') +
+          head('Step 2 of 2: Pick a time on ' + esc(fmtLong.format(list[0].start)), 'Times are shown in ' + tzName(list[0].start) + '.') +
           '<div class="slot-list" role="group" aria-labelledby="cal-title">' +
           list.map(function (s, i) {
             return '<button type="button" class="slot-btn" data-slot="' + i + '"><span>' + esc(fmtTime.format(s.start)) + ' – ' + esc(fmtTime.format(s.end)) +
