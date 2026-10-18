@@ -40,8 +40,8 @@
     });
   }
   var ICON = {
-    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
-    checkCircle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.25l4.5 4.5L19 7.25"/></svg>',
+    checkCircle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.25l3 3 6-6.5"/></svg>',
     arrowLeft: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
     arrowRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
     lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>',
@@ -51,7 +51,7 @@
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>',
     calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
     video: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6.5" width="13" height="11" rx="2"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/></svg>',
-    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></svg>',
+    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path transform="translate(0 -0.8)" d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></svg>',
     info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6"/><circle cx="12" cy="7.6" r=".7" fill="currentColor"/></svg>'
   };
 
@@ -237,7 +237,7 @@
         '<div class="stack">' +
           '<h1 data-focus>' + esc(S.title) + '</h1>' +
           '<p class="lead">' + esc(S.purpose) + '</p>' +
-          '<p class="byline">Please email <strong>' + esc(S.researcher) + '</strong> (Lead Researcher) for any questions. ' +
+          '<p class="byline">Please email <strong>' + esc(S.researcher) + '</strong> (Lead Researcher) for any questions.<br>' +
             '<a id="info-link" href="' + esc(C.STUDY_INFO_DOC_URL || '#study-information') + '"' + (C.STUDY_INFO_DOC_URL ? ' target="_blank" rel="noopener"' : '') + '>Click here to see the study information sheet.</a></p>' +
         '</div>' +
         '<div class="stack">' +
@@ -367,6 +367,8 @@
       var first = document.querySelector('#q-form input'); if (first) first.focus();
       return;
     }
+    // A disqualifying answer ends the screener right away (skips the remaining questions).
+    if (!hasPendingFollowUp(q) && resultFor(q, v) === 'ineligible') { finish(); return; }
     var seq = sequence();
     if (state.pos < seq.length - 1) { go('question', state.pos + 1); return; }
     finish();
@@ -567,7 +569,7 @@
         '<div class="stack">' +
           '<div class="result-mark gold" aria-hidden="true">' + ICON.checkCircle + '</div>' +
           '<h1 data-focus>You may be a good fit for our study!</h1>' +
-          '<p class="lead">If you would like to be interviewed, please share your name and email below. Participants who complete their interview will receive a ' + esc(S.giftAmount) + '.</p>' +
+          '<p class="lead">If you would like to be interviewed, please share your name and email below. Participants who complete their interview will receive ' + esc(S.giftAmount) + '.</p>' +
         '</div>' +
         '<form class="form" id="contact-form" novalidate>' +
           '<div id="form-alert" tabindex="-1"></div>' +
@@ -583,7 +585,7 @@
             '<span>I agree to be contacted by email about this study. I understand I can change my mind at any time.</span></label>' +
             '<div class="field-error" id="consent-error" hidden>' + ICON.alert + '<span>Please check this box so we can contact you.</span></div>' +
           '</div>' +
-          '<p class="small-print">Your name and email are stored securely by UC Irvine and used only for this study. Your eligibility answers are saved with them so the researcher can review them.</p>' +
+          '<p class="small-print">Your name and email are stored securely and used only for this study. Your eligibility answers will be saved so the researcher can review them.</p>' +
           '<div class="actions"><button type="submit" class="btn btn-primary btn-block-sm" id="submit-btn">Submit</button></div>' +
           (DEMO ? '<div class="demo-panel" role="note"><span class="demo-tag">DEMO MODE</span><p>Submissions are simulated. To preview the error message, use the first name <strong>Test Error</strong>.</p></div>' : '') +
         '</form>' +

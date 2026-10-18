@@ -39,7 +39,7 @@ window.STUDY_CONFIG = {
     affiliation: 'Joe C. Wen School of Population & Public Health, University of California, Irvine',
     facultyAdvisor: '[Faculty advisor name], PhD',                     // TODO(go-live)
     contactEmail: 'ctnguy16@uci.edu',                            // TODO(go-live): study email participants can write to
-    giftAmount: '$25 e-gift card',                                     // TODO(go-live): thank-you gift as approved by the IRB
+    giftAmount: '$25',                                                // TODO(go-live): thank-you gift as approved by the IRB
     interviewLength: '60–90 minutes',
     screenerLength: 'about 2 minutes',
     irbNumber: 'UCI IRB #[pending]',                                   // TODO(go-live)
@@ -67,9 +67,9 @@ window.STUDY_CONFIG = {
     { heading: 'Risks and benefits',
       body: ['[Placeholder] Some questions are personal. There is no direct benefit to you, but your experiences may help improve care for other women.'] },
     { heading: 'Thank-you gift',
-      body: ['[Placeholder] People who complete an interview receive a $25 e-gift card.'] },
+      body: ['[Placeholder] People who complete an interview receive $25.'] },
     { heading: 'Your privacy',
-      body: ['[Placeholder] The eligibility questions are anonymous. If you share your name and email, they are stored securely by UC Irvine and used only to contact you about this study. Interview recordings and notes will not include your name.'] },
+      body: ['[Placeholder] The eligibility questions are anonymous. If you share your name and email, they are stored securely and used only to contact you about this study. Interview recordings and notes will not include your name.'] },
     { heading: 'Taking part is your choice',
       body: ['[Placeholder] Participation is voluntary. Choosing not to take part will not affect your health care or any services you receive.'] },
     { heading: 'Questions',
@@ -90,7 +90,8 @@ window.STUDY_CONFIG = {
                    followUp: id of a follow-up question shown next (it is not
                    counted in "Question X of 7"; its answer decides the result)
        eligibleMin / eligibleMax – for 'number'
-     Everyone answers every question before any result is shown.
+     An 'ineligible' answer ends the screener right away (remaining questions
+     are skipped); otherwise everyone answers every question before a result.
      --------------------------------------------------------------------------- */
   QUESTIONS: [
     {
@@ -159,7 +160,7 @@ window.STUDY_CONFIG = {
     },
     {
       id: 'english', label: 'Comfortable with an English interview', type: 'choice',
-      text: 'Are you comfortable reading and speaking in English for an interview of about 60–90 minutes?',
+      text: 'Are you comfortable speaking in English for an interview of about 60–90 minutes?',
       options: [
         { value: 'yes', label: 'Yes', result: 'eligible' },
         { value: 'no',  label: 'No',  result: 'ineligible' }
@@ -180,8 +181,9 @@ window.STUDY_CONFIG = {
     'Wisconsin', 'Wyoming'
   ],
 
-  /* How answers combine into one outcome (do not reveal which answer decided it):
-     any 'ineligible' → Not eligible; otherwise any 'review' → Needs review;
+  /* How answers combine into one outcome (the result screen does not say which
+     answer decided it): an 'ineligible' answer → Not eligible as soon as it is
+     given; otherwise any 'review' → Needs review;
      otherwise → Eligible. "Needs review" looks like Eligible to the participant. */
   OUTCOME_LABELS: { eligible: 'Eligible', review: 'Needs review', ineligible: 'Not eligible' },
 

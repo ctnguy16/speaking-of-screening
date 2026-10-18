@@ -333,6 +333,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .next-list li:last-child { border-bottom: 1px solid var(--uci-light-gray); }
 .next-list svg { width: 28px; height: 28px; color: var(--uci-blue); }
 .success-icon { color: var(--uci-green); }
+.success-icon svg { display: block; }     /* no text-line gap under the icon, so it stays centred */
 
 .small-print { font-family: var(--font-serif); font-size: var(--text-small); color: var(--uci-darkest-blue); }
 
