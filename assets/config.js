@@ -23,7 +23,7 @@ window.STUDY_CONFIG = {
 
   // TODO(go-live): your custom domain (no trailing slash). Must match SITE_URL
   // in Code.gs so scheduling links point to the right place.
-  SITE_URL: 'https://ctnguy16.github.io/speaking-of-screening',
+  SITE_URL: 'https://speakingofscreening.com',
 
   /* ---------------------------------------------------------------------------
      2. STUDY DETAILS (shown on the pages)
