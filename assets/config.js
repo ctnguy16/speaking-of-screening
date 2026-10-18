@@ -1,5 +1,5 @@
 /* =============================================================================
-   HER HEALTH, HER VOICE — STUDY CONFIGURATION
+   SPEAKING OF SCREENING — STUDY CONFIGURATION
    -----------------------------------------------------------------------------
    This is the ONE file to edit for wording, eligibility rules, contact details
    and backend URLs. You should not need to touch app.js or schedule.js.
@@ -10,29 +10,26 @@
 window.STUDY_CONFIG = {
 
   /* ---------------------------------------------------------------------------
-     1. BACKEND + SCHEDULING
-     Leave both empty to run as a self-contained demo: submissions and name
-     lookups are simulated in the browser and the mock calendar is shown.
+     1. BACKEND
+     Leave APPS_SCRIPT_URL empty to run as a self-contained demo: submissions,
+     name lookups and bookings are simulated in the browser and mock interview
+     times are shown. Once it is set, the scheduling page shows the open times
+     from your Google Calendar and books them (times are set in Code.gs).
      --------------------------------------------------------------------------- */
 
   // TODO(go-live): paste the Web app URL from Apps Script → Deploy → Manage
   // deployments (it ends in /exec).
-  APPS_SCRIPT_URL: '',
-
-  // TODO(go-live): paste the embed URL of your Google Calendar appointment
-  // schedule (Calendar → your appointment schedule → Share → Website embed →
-  // copy only the src="…" value of the iframe).
-  GOOGLE_APPOINTMENT_EMBED_URL: '',
+  APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycby5_kej8PiSdVgGgjW6q6rYgoS9u_dVFaiBnwBi1oGL8Xca4MaB1UcgJ5uAiEVibSBXWg/exec',
 
   // TODO(go-live): your custom domain (no trailing slash). Must match SITE_URL
   // in Code.gs so scheduling links point to the right place.
-  SITE_URL: 'https://ctnguy16.github.io/her-health-her-voice',
+  SITE_URL: 'https://ctnguy16.github.io/speaking-of-screening',
 
   /* ---------------------------------------------------------------------------
      2. STUDY DETAILS (shown on the pages)
      --------------------------------------------------------------------------- */
   STUDY: {
-    title: 'Her Health, Her Voice',                                   // TODO(go-live): final study name
+    title: 'Speaking of Screening',                                   // TODO(go-live): final study name
     purpose: 'A UC Irvine research study listening to Vietnamese American women about their experiences with cervical cancer screening.',
     researcher: 'Christine Nguyen',                                    // TODO(go-live): name + credentials as approved by the IRB
     researcherRole: 'Doctoral student',
@@ -191,7 +188,9 @@ window.STUDY_CONFIG = {
      5. SCHEDULING PAGE
      --------------------------------------------------------------------------- */
   SCHEDULING: {
-    // Mock calendar only (used when GOOGLE_APPOINTMENT_EMBED_URL is empty).
+    // DEMO ONLY (used while APPS_SCRIPT_URL is empty). On the live site the
+    // interview times, length and booking window come from the INTERVIEW
+    // SCHEDULING settings in Code.gs; keep these similar so the demo looks right.
     // Interview start times in the study team's time zone; each lasts 90 minutes.
     teamTimeZone: 'America/Los_Angeles',
     slotMinutes: 90,

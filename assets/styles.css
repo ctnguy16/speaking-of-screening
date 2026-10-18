@@ -372,9 +372,6 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .site-footer .muted { color: #D9E2EE; }
 
 /* ---------- Scheduling page ---------- */
-.embed-card { background: var(--bg-soft); border-radius: 16px; padding: 12px; }
-.embed-card iframe { display: block; width: 100%; height: clamp(620px, 80vh, 900px); border: 0; border-radius: 10px; background: var(--bg); }
-.embed-fallback { margin-top: 12px; font-size: var(--text-small); text-align: center; }
 .cal { background: var(--bg-soft); border-radius: 16px; padding: 20px; }
 .cal-step { display: flex; flex-direction: column; gap: 18px; }
 @media (min-width: 720px) { .cal { padding: 28px; } }

@@ -1,5 +1,5 @@
 /* =============================================================================
-   Her Health, Her Voice — main flow (landing → screener → result → contact → thanks)
+   Speaking of Screening — main flow (landing → screener → result → contact → thanks)
    All wording and rules come from assets/config.js. You should not need to edit
    this file to change questions, options or eligibility.
    ============================================================================= */
@@ -701,7 +701,7 @@
         setTimeout(function () {
           if (/^test error$/i.test(record.firstName + ' ' + record.lastName) || /^test error$/i.test(record.firstName)) { reject(new Error('demo failure')); return; }
           try { // lets the demo scheduling page greet this person; demo only
-            var key = 'hhhv-demo-participants';
+            var key = 'sos-demo-participants';
             var m = JSON.parse(sessionStorage.getItem(key) || '{}'); m[record.participantId] = record.firstName;
             sessionStorage.setItem(key, JSON.stringify(m));
           } catch (e) { /* storage blocked: fine */ }
