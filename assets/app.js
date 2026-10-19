@@ -96,7 +96,7 @@
     var v = S[el.getAttribute('data-bind')]; if (v) el.textContent = v;
   });
   document.querySelectorAll('[data-bind-email]').forEach(function (el) {
-    el.href = 'mailto:' + S.contactEmail;
+    el.textContent = S.contactEmail; el.href = 'mailto:' + S.contactEmail;
   });
 
   /* ---------- Question sequence + eligibility ---------- */
@@ -237,7 +237,7 @@
         '<div class="stack">' +
           '<h1 data-focus>' + esc(S.title) + '</h1>' +
           '<p class="lead">' + esc(S.purpose) + '</p>' +
-          '<p class="byline">Please email <strong>' + esc(S.researcher) + '</strong> (Lead Researcher) for any questions.<br>' +
+          '<p class="byline">Please email <strong>' + esc(S.researcher) + '</strong> (Lead Researcher) at <a href="mailto:' + esc(S.contactEmail) + '">' + esc(S.contactEmail) + '</a> for any questions.<br>' +
             '<a id="info-link" href="' + esc(C.STUDY_INFO_DOC_URL || '#study-information') + '"' + (C.STUDY_INFO_DOC_URL ? ' target="_blank" rel="noopener"' : '') + '>Click here to see the study information sheet.</a></p>' +
         '</div>' +
         '<div class="stack">' +
