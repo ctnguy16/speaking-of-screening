@@ -338,13 +338,17 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .small-print { font-family: var(--font-serif); font-size: var(--text-small); color: var(--uci-darkest-blue); }
 
 /* Study info */
-.info-sections { display: flex; flex-direction: column; gap: 28px; }
-.info-sections h2 { font-size: 22px; margin-bottom: 8px; }
-.info-sections p + p { margin-top: 10px; }
-.placeholder-banner {
-  font-family: var(--font-serif); font-size: var(--text-small);
-  background: var(--gold-tint); border-left: 0; border-radius: var(--radius); padding: 12px 16px;
-}
+.info-study-title { font-family: var(--font-serif); font-weight: 600; }
+.info-version { font-size: var(--text-small); font-style: italic; color: var(--uci-dark-gray); }
+.info-people { display: grid; gap: 16px; }
+@media (min-width: 560px) { .info-people { grid-template-columns: 1fr 1fr; } }
+.info-person { background: var(--bg-soft); border-radius: var(--radius); padding: 18px 20px; }
+.info-person h2 { font-size: var(--text-small); font-weight: 700; letter-spacing: 0.06em; color: var(--uci-blue); margin-bottom: 6px; }
+.info-person p { overflow-wrap: anywhere; }
+.info-list { margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 18px; }
+.info-list li::marker { color: var(--uci-blue); }
+.info-list h3 { font-size: inherit; font-weight: 400; margin-bottom: 6px; }
+.info-closing { border-top: 4px solid var(--uci-gold); padding-top: 20px; }
 
 /* Demo helper panel (only shown in demo mode) */
 .demo-panel {

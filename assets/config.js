@@ -46,32 +46,45 @@ window.STUDY_CONFIG = {
   },
 
   /* Link for "Click here to see the study information sheet." on the home page.
-     TODO(go-live): paste the Google Doc link (Share → General access: "Anyone with the
-     link" → Viewer). While empty, the link opens the placeholder sheet below instead. */
+     Leave empty so the link opens the study information sheet below, inside the site.
+     (If a URL is set here, the link opens that page in a new tab instead.) */
   STUDY_INFO_DOC_URL: '',
 
   /* ---------------------------------------------------------------------------
-     3. STUDY INFORMATION SHEET (placeholder for the IRB-approved text)
-     TODO(go-live): replace every section with the IRB-approved study
-     information sheet. Each item is a heading and one or more paragraphs.
+     3. STUDY INFORMATION SHEET (IRB-approved text, word for word)
+     Source: https://docs.google.com/document/d/122cAlYqWAD0s9K7O6APSY7Yg-mNhDYZW/edit
+     When that document changes, copy the new wording here exactly.
+     Inline formatting: **bold** and _italic_. Email addresses become links.
+     items: each string is one bullet; { heading, body } is a bullet with a
+     title line and a paragraph under it.
      --------------------------------------------------------------------------- */
-  STUDY_INFO: [
-    { heading: 'Why we are doing this study',
-      body: ['[Placeholder] We want to understand what shapes Vietnamese American women’s decisions and experiences around cervical cancer screening, so that screening services can better meet their needs.'] },
-    { heading: 'What you would do',
-      body: ['[Placeholder] First, answer a few short questions to see if you can take part. If you may be a good fit and choose to share your contact details, the researcher may invite you to one private interview on Zoom lasting 60–90 minutes.',
-             '[Placeholder] You can skip any question and stop at any time.'] },
-    { heading: 'Risks and benefits',
-      body: ['[Placeholder] Some questions are personal. There is no direct benefit to you, but your experiences may help improve care for other women.'] },
-    { heading: 'Thank-you gift',
-      body: ['[Placeholder] People who complete an interview receive $25.'] },
-    { heading: 'Your privacy',
-      body: ['[Placeholder] The eligibility questions are anonymous. If you share your name and email, they are stored securely and used only to contact you about this study. Interview recordings and notes will not include your name.'] },
-    { heading: 'Taking part is your choice',
-      body: ['[Placeholder] Participation is voluntary. Choosing not to take part will not affect your health care or any services you receive.'] },
-    { heading: 'Questions',
-      body: ['[Placeholder] Contact the study team at ctnguy16@uci.edu. For questions about your rights as a research participant, contact the UC Irvine Office of Research, Institutional Review Board.'] }
-  ],
+  STUDY_INFO: {
+    version: 'UCI IRB Version: Study Info Sheet – Exempt – October 2026',
+    institution: 'University of California, Irvine',
+    title: 'Study Information Sheet',
+    studyTitle: 'Speaking of Screening: Understanding Cervical Cancer Screening Perceptions and Acceptance among Vietnamese American Women',
+    people: [
+      { role: 'PRINCIPAL INVESTIGATOR',
+        lines: ['Christine T. Nguyen, MPH', 'Public Health: Health, Society, & Behavior', 'Ctnguy16@uci.edu'] },
+      { role: 'FACULTY ADVISOR',
+        lines: ['Sora Park Tanjasiri, MPH, DrPH', 'Public Health: Health, Society, & Behavior', 'tanjasir@hs.uci.edu'] }
+    ],
+    items: [
+      'Please read the information below and ask questions about anything that you do not understand.  A researcher listed above will be available to answer your questions.',
+      'You are being asked to participate in a research study. Participation in this study is voluntary.  You may choose to skip a question or a study procedure. You may refuse to participate or discontinue your involvement at any time without penalty or loss of benefits.  You are free to withdraw from this study at any time. **If you decide to withdraw from this study you should notify the research team immediately**.',
+      'We would like you to complete an interview to learn more about cervical cancer screening knowledge, perceptions, needs, and self-efficacy among never- and under-screened Vietnamese American women aged 30–65, comparing perceptions of three screening modalities: (1) clinician-collected Pap/HPV testing, (2) HPV self-sampling in a clinic, and (3) HPV self-sampling at home. A secondary goal is to examine how nativity, age at arrival, and length of U.S. residence shape these perceptions.',
+      'The study procedures will last about 60 to 90 minutes.',
+      'Possible risks/discomforts associated with the study are minimal. Further, participation in this study does not place participants at risk for criminal or civil liability. Participation is voluntary and participants will be told that they do not need to respond to any question that they choose not to answer. However, some questions may result in physical, mental, or emotional discomfort, particularly recounting experiences related to cancer and cervical cancer screening.',
+      'There are no direct benefits from participation in the study.  However, this study may contibute to the knowledge about how to understand, support, and promote cervical cancer screening access, acceptance, and uptake among non- and under-screened Vietnamese American women to close the cervical cancer burden.',
+      'You will receive $30 for your participation in this study.',
+      'All research data collected will be stored securely and confidentially. Research data will be stored electronically on a laptop computer in an encrypted file that is password protected. The audio recordings will contain no personal identifiers that can be used to identify you; they will also be stored in a secure location, and deleted after transcription is completed.',
+      { heading: '_Future Research Use_',
+        body: 'Researchers will use your information to conduct this study. Once the study is done using your information, we may share them with other researchers so they can use them for other studies in the future. We will not share your name or any other private identifiable information that would let the researchers know who you are. We will not ask you for additional permission to share this de-identified information.' },
+      'Questions? If you have any comments, concerns, or questions regarding this study please contact the researchers listed at the top of this form.',
+      'If you have questions or concerns about your rights as a research participant, you can contact the UCI Institutional Review Board by phone, (949) 824-8170, by e-mail at IRB@research.uci.edu or by mail at University of California, Irvine, Office of Research, Irvine, CA 92697-7600.'
+    ],
+    closing: '**What is an IRB?**  An Institutional Review Board (IRB) is a committee made up of scientists and non-scientists.  The IRB’s role is to protect the rights and welfare of human subjects involved in research.  The IRB also assures that the research complies with applicable regulations, laws, and institutional policies.'
+  },
 
   /* ---------------------------------------------------------------------------
      4. ELIGIBILITY QUESTIONS

@@ -256,27 +256,41 @@
         demoPanelLanding() +
       '</section>';
     document.getElementById('start-btn').onclick = function () { state.answers = {}; go('question', 0); };
-    // Study information sheet: opens the Google Doc when STUDY_INFO_DOC_URL is set;
-    // until then it shows the placeholder sheet inside the site.
+    // Study information sheet: shown inside the site unless STUDY_INFO_DOC_URL is set.
     if (!C.STUDY_INFO_DOC_URL) document.getElementById('info-link').onclick = function (e) { e.preventDefault(); go('info'); };
     announce(S.title + '. Welcome.');
   }
 
+  // Escapes text, then applies the sheet's light markup: **bold**, _italic_, email links.
+  function richText(t) {
+    return esc(t)
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[\s(])_(.+?)_(?=$|[\s).,])/g, '$1<em>$2</em>')
+      .replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g, function (m) { return '<a href="mailto:' + m + '">' + m + '</a>'; });
+  }
+
   function renderInfo() {
-    var sections = C.STUDY_INFO.map(function (s) {
-      return '<section><h2>' + esc(s.heading) + '</h2>' +
-        s.body.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('') + '</section>';
+    var I = C.STUDY_INFO;
+    var people = I.people.map(function (p) {
+      return '<div class="info-person"><h2>' + esc(p.role) + '</h2>' +
+        '<p>' + p.lines.map(richText).join('<br>') + '</p></div>';
+    }).join('');
+    var items = I.items.map(function (it) {
+      if (typeof it === 'string') return '<li>' + richText(it) + '</li>';
+      return '<li><h3>' + richText(it.heading) + '</h3><p>' + richText(it.body) + '</p></li>';
     }).join('');
     app.innerHTML =
       '<section class="screen stack-lg" data-anim>' +
         '<div class="stack">' +
           '<button type="button" class="btn btn-quiet back-btn" id="back-btn" style="align-self:flex-start">' + ICON.arrowLeft + ' Back</button>' +
-          '<span class="eyebrow">' + esc(S.irbNumber) + '</span>' +
-          '<h1 data-focus>Study information</h1>' +
-          // TODO(go-live): remove this banner once STUDY_INFO holds the IRB-approved text.
-          '<p class="placeholder-banner">This is placeholder text. The final IRB-approved study information sheet will appear here.</p>' +
+          '<span class="eyebrow">' + esc(I.institution) + '</span>' +
+          '<h1 data-focus>' + esc(I.title) + '</h1>' +
+          '<p class="lead info-study-title"><em>' + esc(I.studyTitle) + '</em></p>' +
+          '<p class="info-version">' + esc(I.version) + '</p>' +
         '</div>' +
-        '<div class="info-sections">' + sections + '</div>' +
+        '<div class="info-people">' + people + '</div>' +
+        '<ul class="info-list">' + items + '</ul>' +
+        '<p class="info-closing">' + richText(I.closing) + '</p>' +
         '<div class="actions"><button type="button" class="btn btn-primary btn-block-sm" id="start-btn">See if I’m eligible ' + ICON.arrowRight + '</button></div>' +
       '</section>';
     document.getElementById('back-btn').onclick = function () { history.back(); };
