@@ -71,7 +71,7 @@ window.STUDY_CONFIG = {
     items: [
       'Please read the information below and ask questions about anything that you do not understand.  A researcher listed above will be available to answer your questions.',
       'You are being asked to participate in a research study. Participation in this study is voluntary.  You may choose to skip a question or a study procedure. You may refuse to participate or discontinue your involvement at any time without penalty or loss of benefits.  You are free to withdraw from this study at any time. **If you decide to withdraw from this study you should notify the research team immediately**.',
-      'We would like you to complete an interview to learn more about cervical cancer screening knowledge, perceptions, needs, and self-efficacy among never- and under-screened Vietnamese American women aged 30–65, comparing perceptions of three screening modalities: (1) clinician-collected Pap/HPV testing, (2) HPV self-sampling in a clinic, and (3) HPV self-sampling at home. A secondary goal is to examine how nativity, age at arrival, and length of U.S. residence shape these perceptions.',
+      'We would like you to complete an interview to learn more about cervical cancer screening knowledge, perceptions, needs, and self-efficacy among never- and under-screened Vietnamese American women aged 25–65, comparing perceptions of three screening modalities: (1) clinician-collected Pap/HPV testing, (2) HPV self-sampling in a clinic, and (3) HPV self-sampling at home. A secondary goal is to examine how nativity, age at arrival, and length of U.S. residence shape these perceptions.',
       'The study procedures will last about 60 to 90 minutes.',
       'Possible risks/discomforts associated with the study are minimal. Further, participation in this study does not place participants at risk for criminal or civil liability. Participation is voluntary and participants will be told that they do not need to respond to any question that they choose not to answer. However, some questions may result in physical, mental, or emotional discomfort, particularly recounting experiences related to cancer and cervical cancer screening.',
       'There are no direct benefits from participation in the study.  However, this study may contibute to the knowledge about how to understand, support, and promote cervical cancer screening access, acceptance, and uptake among non- and under-screened Vietnamese American women to close the cervical cancer burden.',
@@ -107,7 +107,7 @@ window.STUDY_CONFIG = {
       id: 'age', label: 'Age', type: 'number',
       text: 'How old are you?',
       placeholder: 'Your age in years',
-      eligibleMin: 30, eligibleMax: 65,
+      eligibleMin: 25, eligibleMax: 65,
       validMin: 1, validMax: 120,
       invalidMessage: 'Please enter your age as a number, like 42.'
     },
