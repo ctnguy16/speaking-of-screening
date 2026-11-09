@@ -283,7 +283,6 @@
       '<section class="screen stack-lg" data-anim>' +
         '<div class="stack">' +
           '<button type="button" class="btn btn-quiet back-btn" id="back-btn" style="align-self:flex-start">' + ICON.arrowLeft + ' Back</button>' +
-          '<span class="eyebrow">' + esc(I.institution) + '</span>' +
           '<h1 data-focus>' + esc(I.title) + '</h1>' +
           '<p class="lead info-study-title"><em>' + esc(I.studyTitle) + '</em></p>' +
           '<p class="info-version">' + esc(I.version) + '</p>' +

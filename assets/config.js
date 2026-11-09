@@ -36,7 +36,7 @@ window.STUDY_CONFIG = {
     affiliation: 'Joe C. Wen School of Population & Public Health, University of California, Irvine',
     facultyAdvisor: '[Faculty advisor name], PhD',                     // TODO(go-live)
     contactEmail: 'ctnguy16@uci.edu',                            // TODO(go-live): study email participants can write to
-    giftAmount: '$25',                                                // TODO(go-live): thank-you gift as approved by the IRB
+    giftAmount: '$30',                                                // TODO(go-live): thank-you gift as approved by the IRB
     interviewLength: '60–90 minutes',
     screenerLength: 'about 2 minutes',
     irbNumber: 'UCI IRB #STUDY00001839',
@@ -60,7 +60,6 @@ window.STUDY_CONFIG = {
      --------------------------------------------------------------------------- */
   STUDY_INFO: {
     version: 'UCI IRB Version: Study Info Sheet – Exempt – October 2026',
-    institution: 'University of California, Irvine',
     title: 'Study Information Sheet',
     studyTitle: 'Speaking of Screening: Understanding Cervical Cancer Screening Perceptions and Acceptance among Vietnamese American Women',
     people: [
