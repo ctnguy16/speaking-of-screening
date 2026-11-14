@@ -281,7 +281,7 @@
               '<li>At your interview time, open the email from us and tap the Zoom link. You may wait a moment until the researcher lets you in.</li>' +
               '<li>Find a quiet, private place where you feel comfortable talking. Headphones help.</li>' +
               // TODO(go-live): confirm the camera policy with your IRB protocol.
-              '<li>You may keep your camera off if you prefer. Only the researcher will be on the call.</li>' +
+              '<li>Your camera will need to be on at the beginning while we go over the study information. After confirmation, the interview can switch to audio only. Only the researcher will be on the call.</li>' +
               '<li>Want to practice? Visit <a href="https://zoom.us/test" target="_blank" rel="noopener">zoom.us/test</a> to try a test meeting.</li>' +
               '<li>Need to change your time? Email <a href="mailto:' + esc(S.contactEmail) + '">' + esc(S.contactEmail) + '</a>.</li>' +
             '</ul></div>' +
