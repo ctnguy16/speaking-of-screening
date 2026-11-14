@@ -22,7 +22,7 @@
     answers: {},          // { questionId: value }
     finished: false,      // true once a result screen has been shown
     submitting: false,
-    form: { first: '', last: '', email: '', email2: '', consent: false, camera: false },
+    form: { first: '', last: '', email: '', email2: '', consent: false },
     lastRecord: null,
     dir: null,            // which way the next screen animates in
     prevPct: 0            // progress bar width before the current screen
@@ -192,7 +192,7 @@
   });
   function resetAll() {
     state.screen = 'landing'; state.pos = 0; state.answers = {}; state.finished = false;
-    state.form = { first: '', last: '', email: '', email2: '', consent: false, camera: false };
+    state.form = { first: '', last: '', email: '', email2: '', consent: false };
     state.lastRecord = null;
     state.prevPct = 0;
   }
@@ -598,11 +598,6 @@
             '<span>I agree to be contacted by email about this study. I understand I can change my mind at any time.</span></label>' +
             '<div class="field-error" id="consent-error" hidden>' + ICON.alert + '<span>Please check this box so we can contact you.</span></div>' +
           '</div>' +
-          '<div class="field">' +
-            '<label class="check" for="camera"><input type="checkbox" id="camera" ' + (f.camera ? 'checked' : '') + ' aria-describedby="camera-error">' +
-            '<span>I agree to have my camera on at the beginning of the Zoom interview while we go over the study information. This is for research fidelity. After confirmation, the interview can switch to audio only.</span></label>' +
-            '<div class="field-error" id="camera-error" hidden>' + ICON.alert + '<span>Please check this box to take part in the interview.</span></div>' +
-          '</div>' +
           '<p class="small-print">Your name and email are stored securely and used only for this study. Your eligibility answers will be saved so the researcher can review them.</p>' +
           '<div class="actions"><button type="submit" class="btn btn-primary btn-block-sm" id="submit-btn">Submit</button></div>' +
           (DEMO ? '<div class="demo-panel" role="note"><span class="demo-tag">DEMO MODE</span><p>Submissions are simulated. To preview the error message, use the first name <strong>Test Error</strong>.</p></div>' : '') +
@@ -618,10 +613,6 @@
     document.getElementById('consent').addEventListener('change', function (e) {
       state.form.consent = e.target.checked;
       if (e.target.checked) { document.getElementById('consent-error').hidden = true; e.target.removeAttribute('aria-invalid'); }
-    });
-    document.getElementById('camera').addEventListener('change', function (e) {
-      state.form.camera = e.target.checked;
-      if (e.target.checked) { document.getElementById('camera-error').hidden = true; e.target.removeAttribute('aria-invalid'); }
     });
     form.addEventListener('submit', function (e) { e.preventDefault(); submit(); });
     announce('You may be a good fit for our study.');
@@ -662,8 +653,6 @@
     var ok = ['first', 'last', 'email', 'email2'].map(validateField);
     var consent = document.getElementById('consent');
     if (!consent.checked) { document.getElementById('consent-error').hidden = false; consent.setAttribute('aria-invalid', 'true'); ok.push(false); }
-    var camera = document.getElementById('camera');
-    if (!camera.checked) { document.getElementById('camera-error').hidden = false; camera.setAttribute('aria-invalid', 'true'); ok.push(false); }
     if (ok.indexOf(false) > -1) {
       var firstBad = document.querySelector('#contact-form [aria-invalid="true"]');
       announce('Please fix the highlighted fields.');
@@ -710,7 +699,6 @@
       outcome: C.OUTCOME_LABELS[r.outcome],
       neverScreened: r.flags.neverScreened ? 'Yes' : 'No',
       consentToContact: 'Yes',
-      consentToCameraAtStart: 'Yes',                  // required checkbox; the backend ignores it unless a column is added
       website: ''                                     // honeypot (must stay empty)
     };
   }

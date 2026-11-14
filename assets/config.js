@@ -174,6 +174,16 @@ window.STUDY_CONFIG = {
         { value: 'yes', label: 'Yes', result: 'eligible' },
         { value: 'no',  label: 'No',  result: 'ineligible' }
       ]
+    },
+    {
+      // Not stored in the Sheet (no column in Code.gs); a "No" ends the screener, so every saved row answered "Yes".
+      id: 'camera', label: 'Camera on at the beginning of the interview', type: 'choice',
+      text: 'Are you willing to have your camera on at the beginning of the Zoom interview while we go over the study information?',
+      helper: 'This is for research fidelity. After confirmation, the interview can switch to audio only.',
+      options: [
+        { value: 'yes', label: 'Yes', result: 'eligible' },
+        { value: 'no',  label: 'No',  result: 'ineligible' }
+      ]
     }
   ],
 
